@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animate{
+  animation:blink 1.5s ease forwards infinite;
+} 
+
+@keyframes blink {
+  0%{
+    opacity:0%;
+  }
+  50%{
+    opacity:75%;
+  }
+  100%{
+    opacity:0%;
+  }
+}
+
+.pokemon-details-card{
+  @apply bg-white p-2 rounded text-center flex flex-col items-center m-2;
+}
+.pokemon-details-card p::first-letter{
+  @apply uppercase
+}
