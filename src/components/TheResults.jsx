@@ -1,15 +1,16 @@
 import PokemonCard from "./PokemonCard";
 import Pagination from "./Pagination";
 function TheResults({ data, pokemon, setUrl, page, setPage }) {
-  const poks = data.results.filter((poke) =>
+
+    const poks = data.results.filter((poke) =>
     poke.name.toLowerCase().includes(pokemon.toLowerCase())
-  );
+    )
 
   return (
     <div className="text-center py-2 gap-2">
       <div className="flex flex-wrap">
         {pokemon
-          ? poks.length
+          ? poks
             ? poks.map((pokemon) => (
                 <div
                   className="p-2 min-h-[200px] min-w-[350px] mx-auto"
@@ -21,7 +22,7 @@ function TheResults({ data, pokemon, setUrl, page, setPage }) {
             : null
           : null}
       </div>
-      {poks.length < 1 ? (
+      {!poks.length ? (
         <div className="text-center w-full pt-10">
           <p className="text-lg">Sorry not found...</p>
         </div>
