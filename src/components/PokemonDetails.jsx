@@ -11,7 +11,6 @@ function PokemonDetails() {
     return json;
   };
   const { data, isLoading } = useQuery(id, getData);
-  console.log(data);
 
   return (
     <div>
@@ -24,7 +23,7 @@ function PokemonDetails() {
         </Link>
       </div>
       {isLoading ? (
-        <div className="text-center pt-[70px]">Loading..</div>
+        <div className="text-center animate pt-[70px]">Loading..</div>
       ) : null}
       {data ? (
         <div

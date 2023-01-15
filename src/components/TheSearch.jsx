@@ -4,8 +4,7 @@ import { useQuery } from "react-query";
 
 function TheSearch() {
   const [searchValue, setSearchValue] = useState("");
-  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
-  const [notFound, setNotFound] = useState(false);
+  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon?limit=20&offset=0");
   const [pokemon, setPokemon] = useState("");
   const [typingErr, setTypingErr] = useState(false);
   const [searching, setSearching] = useState(false);
@@ -14,6 +13,14 @@ function TheSearch() {
   const getData = async () => {
     const response = await fetch(url);
     const json = await response.json();
+    if(json.next){
+      let temp = json.next.split("offset=").pop().split("&")[0]/20 
+      json.actualPage = temp
+    }
+    else if(!json.nextPage){
+      json.actualPage = Math.ceil(json.count / 20)
+    }
+    
     return json;
   };
 
@@ -95,7 +102,6 @@ function TheSearch() {
         {data ? (
           <div>
             <TheResults
-              notFound={notFound}
               searchData={searchData}
               searchLoading={searchData}
               setUrl={setUrl}
@@ -109,7 +115,7 @@ function TheSearch() {
         ) : null}
 
         {isLoading ? (
-          <div className="text-center pt-[70px]">Loading..</div>
+          <div className="text-center animate pt-[70px]">Loading..</div>
         ) : null}
       </section>
     </div>

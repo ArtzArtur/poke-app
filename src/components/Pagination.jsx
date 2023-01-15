@@ -1,12 +1,15 @@
-function Pagination({ data, setUrl, page, setPage }) {
+function Pagination({ data, setUrl }) {
   const nextPage = (url) => {
-    setPage((curr) => curr + 1);
-    setUrl(url);
+    setUrl(url);  
   };
 
   const prevPage = (url) => {
-    setPage((curr) => curr - 1);
-    setUrl(url);
+    if(!data.next){
+    setUrl("https://pokeapi.co/api/v2/pokemon?offset=1240&limit=20")
+    }
+    else(
+    setUrl(url)
+    )
   };
 
   return (
@@ -15,7 +18,7 @@ function Pagination({ data, setUrl, page, setPage }) {
         <div>
           <div>
             <p>
-              Page {page} of {Math.ceil(data.count / 20)}
+              Page {data.actualPage} of {Math.ceil(data.count / 20)}
             </p>
           </div>
           {data.previous ? (
