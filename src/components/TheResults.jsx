@@ -1,35 +1,34 @@
 import PokemonCard from "./PokemonCard";
 import Pagination from "./Pagination";
-function TheResults({ data, pokemon, setUrl, page, setPage }) {
-
-    const poks = data.results.filter((poke) =>
-    poke.name.toLowerCase().includes(pokemon.toLowerCase())
-    )
-
+function TheResults({
+  data,
+  setUrl,
+  page,
+  setPage,
+  searchData,
+}) {
   return (
     <div className="text-center py-2 gap-2">
       <div className="flex flex-wrap">
-        {pokemon
-          ? poks
-            ? poks.map((pokemon) => (
-                <div
-                  className="p-2 min-h-[200px] min-w-[350px] mx-auto"
-                  key={pokemon.name}
-                >
-                  <PokemonCard url={pokemon.url} />
-                </div>
-              ))
-            : null
+        {searchData
+          ? searchData.map((pokemon) => (
+              <div
+                className="p-2 min-h-[200px] min-w-[300px] mx-auto"
+                key={pokemon.name}
+              >
+                <PokemonCard url={pokemon.url} />
+              </div>
+            ))
           : null}
       </div>
-      {!poks.length ? (
+      {searchData && !searchData.length ? (
         <div className="text-center w-full pt-10">
           <p className="text-lg">Sorry not found...</p>
         </div>
       ) : null}
 
       <div className="text-center grid sm:grid-cols-2 lg:grid-cols-4 py-2 gap-2">
-        {data && !pokemon
+        {data && !searchData
           ? data.results.map((pokemon) => (
               <div
                 key={pokemon.name}
@@ -39,7 +38,7 @@ function TheResults({ data, pokemon, setUrl, page, setPage }) {
               </div>
             ))
           : null}
-        {data && !pokemon ? (
+        {data && !searchData ? (
           <Pagination
             data={data}
             setUrl={setUrl}
