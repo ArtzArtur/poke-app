@@ -2,12 +2,6 @@
 > Pokemon App made in ReactJS+Vite and Tailwind CSS.
 > Live demo [_here_](https://artzartur.github.io/poke-app/).
 
-## Table of Contents
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Contact](#contact)
-
 
 ## General Information
 Simple Pokemon app with search engine and detailed information about almost every pokemon.
