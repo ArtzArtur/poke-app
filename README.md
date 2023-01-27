@@ -12,6 +12,7 @@ Simple Pokemon app with search engine and detailed information about almost ever
 - React Router 6
 - React Query 3
 - Tailwind CSS 3
+- RESTful API used in app - [_PokeAPI_](https://pokeapi.co/).
 
 
 ## Features
